@@ -1,0 +1,56 @@
+<view class="box_1">
+<view class="box_2">欢迎使用美乐吧</view>
+<view class="box_3" wx:if='{{count}}'></view>
+
+<view wx:if='{{show&&base_2==""}}'>                  <!--  拍照才会显示 -->
+<view class="box_4">预览</view>
+<image mode="widthFix" src="{{src}}" style="width:100%"></image>
+</view>
+
+<!-- 显示美化后的图片 -->
+<view wx:if='{{show_1&&base_2!=""}}'>
+<view class="box_4">美化后</view>
+<image mode="widthFix" src="{{base2}}" style="width:100%"></image>
+<button bindtap="Savelocal" class="button_1" style="width:50%">保存至本地</button>
+</view>
+
+<view wx:if='{{camera}}'>
+<camera device-position="back" flash="off" binderror="error" style="width: 100%; height: 300px;"></camera>
+<button type="primary" bindtap="takePhoto" class="button_1">拍照</button>
+</view>
+<button bindtap="login" class="button_1" style="width:90%">拍照</button>
+<picker 
+  bindchange="beautiful" 
+  value="{{index}}" 
+  range-key="fun"  
+  range="{{Functions}}"
+  class="box_5"
+  >
+    <view>
+      请选择功能呦：{{Functions[index].fun}}
+    </view>
+</picker>
+
+<view wx:if='{{index==11||index==12||index==13||index==15}}'><!--可拉进度条 -->
+    <myComponent id="myComponent"></myComponent>
+    <button bindtap="getnum" class="button_1" style="width:50%">确定</button>
+</view>
+
+<view wx:if='{{index==14}}' class="box_6"><!--文字框 -->
+   <input
+    bindinput="getText" 
+    data-set="Text" 
+    value="{{Text}}" 
+    placeholder="请输入您想添加的文字"
+    placeholder-class="placeholder-input"></input>
+</view>
+
+<view wx:if='{{index==18}}'>   <!-- 18 -->
+  <button class="button_1" style="width:50%" bindtap="back">选择背景</button>
+
+  <image mode="widthFix" src="{{local_src}}" style="width:100%" wx:if='{{local_src!=""}}'></image>
+</view>
+
+<button bindtap="trans" class="button_1" style="width:90%">开始美颜</button>
+
+</view>
